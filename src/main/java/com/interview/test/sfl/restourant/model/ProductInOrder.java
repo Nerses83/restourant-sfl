@@ -1,5 +1,8 @@
 package com.interview.test.sfl.restourant.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.interview.test.sfl.restourant.model.converter.OrderStatusConverter;
 import com.interview.test.sfl.restourant.model.enums.OrderStatus;
 
@@ -7,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PRODUCT_IN_TABLE")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ProductInOrder {
 
     @Id
@@ -20,6 +24,7 @@ public class ProductInOrder {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
+    @JsonIgnore
     Order order;
 
     @ManyToOne

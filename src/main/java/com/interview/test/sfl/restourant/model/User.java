@@ -1,6 +1,7 @@
 package com.interview.test.sfl.restourant.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.interview.test.sfl.restourant.model.converter.UserTypeConverter;
 import com.interview.test.sfl.restourant.model.enums.UserType;
 
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "USER")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
 
@@ -60,5 +62,13 @@ public class User {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public Set<RestourantTable> getRestourantTables() {
+        return restourantTables;
+    }
+
+    public void setRestourantTables(Set<RestourantTable> restourantTables) {
+        this.restourantTables = restourantTables;
     }
 }

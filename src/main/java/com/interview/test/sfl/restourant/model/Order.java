@@ -1,5 +1,7 @@
 package com.interview.test.sfl.restourant.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.interview.test.sfl.restourant.model.converter.OrderStatusConverter;
 import com.interview.test.sfl.restourant.model.enums.OrderStatus;
@@ -10,6 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "ORDERS")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Order {
 
     @Id
@@ -66,5 +69,13 @@ public class Order {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+    public Set<ProductInOrder> getProductInOrders() {
+        return productInOrders;
+    }
+
+    public void setProductInOrders(Set<ProductInOrder> productInOrders) {
+        this.productInOrders = productInOrders;
     }
 }
